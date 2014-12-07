@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="161" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AJk-p9-idP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="161" id="Dhq-h1-cxf" customClass="TableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dhq-h1-cxf" id="xH6-L7-NsX">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gbI-Ft-gfl">
+                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H1G-Cx-Wp0">
+                                                    <rect key="frame" x="160" y="0.0" width="160" height="160"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gbI-Ft-gfl" firstAttribute="width" secondItem="H1G-Cx-Wp0" secondAttribute="width" id="0hy-Kd-cBq"/>
+                                                <constraint firstAttribute="bottom" secondItem="H1G-Cx-Wp0" secondAttribute="bottom" id="SIE-gr-b5h"/>
+                                                <constraint firstAttribute="bottom" secondItem="gbI-Ft-gfl" secondAttribute="bottom" id="W0d-la-1cH"/>
+                                                <constraint firstItem="H1G-Cx-Wp0" firstAttribute="leading" secondItem="gbI-Ft-gfl" secondAttribute="trailing" id="YBP-6y-1UO"/>
+                                                <constraint firstItem="gbI-Ft-gfl" firstAttribute="top" secondItem="xH6-L7-NsX" secondAttribute="top" id="as4-4O-tmr"/>
+                                                <constraint firstAttribute="trailing" secondItem="H1G-Cx-Wp0" secondAttribute="trailing" id="gUB-rQ-2fM"/>
+                                                <constraint firstItem="gbI-Ft-gfl" firstAttribute="leading" secondItem="xH6-L7-NsX" secondAttribute="leading" id="qKJ-6K-8oS"/>
+                                                <constraint firstItem="H1G-Cx-Wp0" firstAttribute="top" secondItem="xH6-L7-NsX" secondAttribute="top" id="rFj-tu-NuI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageViewL" destination="gbI-Ft-gfl" id="NQc-f6-1dg"/>
+                                            <outlet property="imageViewR" destination="H1G-Cx-Wp0" id="ug6-IY-eOs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AJk-p9-idP" secondAttribute="trailing" id="7T4-zE-vR6"/>
+                            <constraint firstItem="AJk-p9-idP" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="97a-Kr-09D"/>
+                            <constraint firstItem="AJk-p9-idP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="g7v-fr-yj7"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AJk-p9-idP" secondAttribute="bottom" id="mQH-lC-VQj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_tableView" destination="AJk-p9-idP" id="Msp-Ym-hyr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="111" y="343"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
