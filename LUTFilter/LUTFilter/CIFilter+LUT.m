@@ -70,6 +70,8 @@ static BOOL isPowerOfTwo(size_t x)
     colorSpace = NULL;
     CGContextRelease(context);
     context = NULL;
+    CGImageRelease(image);
+    image = NULL;
     
     size_t size = height;
 
