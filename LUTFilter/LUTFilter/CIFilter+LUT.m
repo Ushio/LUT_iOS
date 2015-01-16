@@ -36,23 +36,17 @@ static BOOL isPowerOfTwo(size_t x)
     return ((x != 0) && ((x & (~x + 1)) == x));
 }
 
-@implementation CIFilter (LUT)
-+ (CIFilter *)lut_filter
-{
-    return [CIFilter filterWithName:@"CIColorCube"];
-}
-- (void)lut_setLut:(NSData *)lut
-{
+FunctionSetParameter functionSetParameterWithLutImageData(NSData *lutImageData) {
     CGImageRef image = NULL;
-    loadCGImage(&image, lut);
-    NSAssert(image, @"");
+    loadCGImage(&image, lutImageData);
+    NSCAssert(image, @"");
     
     size_t width = CGImageGetWidth(image);
     size_t height = CGImageGetHeight(image);
     
-    NSAssert(isPowerOfTwo(width), @"");
-    NSAssert(isPowerOfTwo(height), @"");
-    NSAssert(height * height == width, @"");
+    NSCAssert(isPowerOfTwo(width), @"");
+    NSCAssert(isPowerOfTwo(height), @"");
+    NSCAssert(height * height == width, @"");
     
     size_t bitsPerComponent = 8;
     size_t bytesPerRow = 4 * width;
@@ -62,7 +56,7 @@ static BOOL isPowerOfTwo(size_t x)
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big;
     CGContextRef context = CGBitmapContextCreate(bytes, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo);
-    NSAssert(context, @"");
+    NSCAssert(context, @"");
     CGContextSetBlendMode(context, kCGBlendModeCopy);
     CGContextSetInterpolationQuality(context, kCGInterpolationNone);
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), image);
@@ -74,7 +68,7 @@ static BOOL isPowerOfTwo(size_t x)
     image = NULL;
     
     size_t size = height;
-
+    
     NSMutableData *lutCube = [NSMutableData data];
     [lutCube setLength:size * size * size * sizeof(float) * 4];
     
@@ -110,7 +104,19 @@ static BOOL isPowerOfTwo(size_t x)
     free(bytes);
     bytes = NULL;
     
-    [self setValue:lutCube forKey:@"inputCubeData"];
-    [self setValue:@(size) forKey:@"inputCubeDimension"];
+    return [^(CIFilter *filter) {
+        [filter setValue:lutCube forKey:@"inputCubeData"];
+        [filter setValue:@(size) forKey:@"inputCubeDimension"];
+    } copy];
+}
+
+@implementation CIFilter (LUT)
++ (CIFilter *)lut_filter
+{
+    return [CIFilter filterWithName:@"CIColorCube"];
+}
+- (void)lut_setLut:(NSData *)lut
+{
+    functionSetParameterWithLutImageData(lut)(self);
 }
 @end

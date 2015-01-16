@@ -8,6 +8,10 @@
 
 #import <CoreImage/CoreImage.h>
 
+typedef void (^FunctionSetParameter)(CIFilter *filter);
+
+FunctionSetParameter functionSetParameterWithLutImageData(NSData *lutImageData);
+
 @interface CIFilter(LUT)
 + (CIFilter *)lut_filter;
 - (void)lut_setLut:(NSData *)lut;
